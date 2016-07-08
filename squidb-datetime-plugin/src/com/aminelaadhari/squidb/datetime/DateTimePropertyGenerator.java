@@ -36,7 +36,7 @@ public class DateTimePropertyGenerator extends BasicLongPropertyGenerator {
     // Generates getter implementation using the static helper class from earlier
     @Override
     protected void writeGetterBody(JavaFileWriter writer) throws IOException {
-        writer.writeStringStatement("Long instant = this.get(" + propertyName + ")");
+        writer.writeStringStatement("Long instant = this.containsNonNullValue(" + propertyName + ") ? this.get(" + propertyName + ") : null");
         writer.writeStringStatement("return instant == null ? null : new DateTime(instant)");
     }
 
